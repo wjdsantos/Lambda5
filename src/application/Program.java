@@ -11,7 +11,6 @@ public class Program {
 
 	public static void main(String[] args) {
 
-
 		//Criando funcoes que recebem funcoes como argumento
 		Locale.setDefault(Locale.US);
 		List<Product> list = new ArrayList<>();
@@ -23,7 +22,13 @@ public class Program {
 		
 		ProductService ps = new ProductService();
 		
-		double sum = ps.filteredSum(list);
-		System.out.println("Sum = " + String.format("%.2f", sum));
+		double sum = ps.filteredSum(list, p -> p.getName().charAt(0) == 'T');
+		System.out.println("Sum T = " + String.format("%.2f", sum));
+		
+		sum = ps.filteredSum(list, p -> p.getName().charAt(0) == 'M');
+		System.out.println("Sum M = " + String.format("%.2f", sum));
+		
+		sum = ps.filteredSum(list, p -> p.getPrice() < 100.0);
+		System.out.println("Sum price < 100.0 = " + String.format("%.2f", sum));
 	}
 }
